@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pnml xmlns="http://www.pnml.org/version-2009/std">
+  <net id="DeadlockNet" type="http://www.pnml.org/version-2009/grammar/ptnet">
+    <page id="page1">
+      <place id="p_r1_free">
+        <initialMarking><text>1</text></initialMarking>
+      </place>
+      <place id="p_r2_free">
+        <initialMarking><text>1</text></initialMarking>
+      </place>
+      
+      <place id="p_a_wait">
+        <initialMarking><text>1</text></initialMarking>
+      </place>
+      <place id="p_a_has_r1"></place>
+      <place id="p_a_done"></place>
+
+      <place id="p_b_wait">
+        <initialMarking><text>1</text></initialMarking>
+      </place>
+      <place id="p_b_has_r2"></place>
+      <place id="p_b_done"></place>
+
+      <transition id="t_a_get_r1"></transition>
+      <transition id="t_a_get_r2"></transition>
+      <transition id="t_a_release"></transition>
+
+      <transition id="t_b_get_r2"></transition>
+      <transition id="t_b_get_r1"></transition>
+      <transition id="t_b_release"></transition>
+
+      <arc id="a1" source="p_a_wait" target="t_a_get_r1"/>
+      <arc id="a2" source="p_r1_free" target="t_a_get_r1"/>
+      <arc id="a3" source="t_a_get_r1" target="p_a_has_r1"/>
+      
+      <arc id="a4" source="p_a_has_r1" target="t_a_get_r2"/>
+      <arc id="a5" source="p_r2_free" target="t_a_get_r2"/>
+      <arc id="a6" source="t_a_get_r2" target="p_a_done"/>
+
+      <arc id="a7" source="p_a_done" target="t_a_release"/>
+      <arc id="a8" source="t_a_release" target="p_a_wait"/>
+      <arc id="a9" source="t_a_release" target="p_r1_free"/>
+      <arc id="a10" source="t_a_release" target="p_r2_free"/>
+      
+      <arc id="b1" source="p_b_wait" target="t_b_get_r2"/>
+      <arc id="b2" source="p_r2_free" target="t_b_get_r2"/>
+      <arc id="b3" source="t_b_get_r2" target="p_b_has_r2"/>
+      
+      <arc id="b4" source="p_b_has_r2" target="t_b_get_r1"/>
+      <arc id="b5" source="p_r1_free" target="t_b_get_r1"/>
+      <arc id="b6" source="t_b_get_r1" target="p_b_done"/>
+
+      <arc id="b7" source="p_b_done" target="t_b_release"/>
+      <arc id="b8" source="t_b_release" target="p_b_wait"/>
+      <arc id="b9" source="t_b_release" target="p_r1_free"/>
+      <arc id="b10" source="t_b_release" target="p_r2_free"/>
+    </page>
+  </net>
+</pnml>

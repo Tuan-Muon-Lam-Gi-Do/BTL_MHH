@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pnml xmlns="http://www.pnml.org/version-2009/std">
+  <net id="ChoiceNet" type="http://www.pnml.org/version-2009/grammar/ptnet">
+    <page id="page1">
+      <place id="p_start">
+        <initialMarking><text>1</text></initialMarking>
+      </place>
+      <place id="p_a_done"></place>
+      <place id="p_b_done"></place>
+      
+      <transition id="t_choice_a"></transition>
+      <transition id="t_choice_b"></transition>
+      
+      <arc id="a1" source="p_start" target="t_choice_a"/>
+      <arc id="a2" source="p_start" target="t_choice_b"/>
+      
+      <arc id="a3" source="t_choice_a" target="p_a_done"/>
+      
+      <arc id="a4" source="t_choice_b" target="p_b_done"/>
+    </page>
+  </net>
+</pnml>

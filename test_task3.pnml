@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pnml xmlns="http://www.pnml.org/version-2009/std">
+  <net id="ConcurrencyNet" type="http://www.pnml.org/version-2009/grammar/ptnet">
+    <page id="page1">
+      <place id="p_start">
+        <initialMarking><text>1</text></initialMarking>
+      </place>
+      <place id="p_a1"></place>
+      <place id="p_a2"></place>
+      <place id="p_b1"></place>
+      <place id="p_b2"></place>
+      <place id="p_end"></place>
+      
+      <transition id="t_start"></transition>
+      <transition id="t_a"></transition>
+      <transition id="t_b"></transition>
+      <transition id="t_end"></transition>
+      
+      <arc id="a1" source="p_start" target="t_start"/>
+      <arc id="a2" source="t_start" target="p_a1"/>
+      <arc id="a3" source="t_start" target="p_b1"/>
+      
+      <arc id="a4" source="p_a1" target="t_a"/>
+      <arc id="a5" source="t_a" target="p_a2"/>
+      
+      <arc id="a6" source="p_b1" target="t_b"/>
+      <arc id="a7" source="t_b" target="p_b2"/>
+      
+      <arc id="a8" source="p_a2" target="t_end"/>
+      <arc id="a9" source="p_b2" target="t_end"/>
+      <arc id="a10" source="t_end" target="p_end"/>
+    </page>
+  </net>
+</pnml>
