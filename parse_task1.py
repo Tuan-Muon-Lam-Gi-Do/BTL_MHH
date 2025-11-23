@@ -24,7 +24,7 @@ class PetriNet:
             print(f"[LỖI] Không thể đọc file {file_path}: {e}")
             return False
 
-        # 1. Xử lý Namespace (thường gặp trong PNML)
+        # 1. Xử lý Namespace 
         try:
             ns_url = root.tag.split('}')[0].strip('{')
             ns = {'pnml': ns_url}
@@ -42,7 +42,7 @@ class PetriNet:
             p_id = place.get('id')
             initial_marking = 0
             
-            # Lấy số token ban đầu (nếu có)
+            # Lấy số token ban đầu 
             marking_tag = None
             if ns:
                 marking_tag = place.find('pnml:initialMarking', ns)
@@ -187,7 +187,7 @@ class PetriNet:
 # VÍ DỤ SỬ DỤNG
 # ==========================================
 if __name__ == "__main__":
-    # Thay tên file PNML của bạn vào đây
+    # Thay tên file PNML vào đây
     pnml_file = "test_task5.pnml" 
     
     net = PetriNet()
@@ -195,6 +195,6 @@ if __name__ == "__main__":
         if net.check_consistency():
             net.print_summary()
             
-            # Dữ liệu để các bạn khác dùng:
+            # Dữ liệu  khác dùng:
             # Task 2 (BFS): dùng net.places, net.transitions
             # Task 4 (ILP): dùng net.incidence_matrix
